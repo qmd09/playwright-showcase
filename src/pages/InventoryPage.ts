@@ -10,13 +10,13 @@ export class InventoryPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.productItems = page.locator('.inventory_item');
-    this.sortDropdown = page.locator('[data-test="product_sort_container"]');
+    this.sortDropdown = page.locator('.product_sort_container');
     this.cartBadge = page.locator('.shopping_cart_badge');
   }
 
   async goto(): Promise<void> {
     await this.page.goto('/inventory.html');
-    await this.waitForPageLoad();
+    await this.page.locator('.inventory_list').waitFor({ state: 'visible' });
   }
 
   async getProductNames(): Promise<string[]> {
