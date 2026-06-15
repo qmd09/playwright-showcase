@@ -82,7 +82,7 @@ npm run test:report
 
 The report opens in your browser. In CI, it is uploaded as an artifact and retained for 30 days.
 
-> Live report: _[update after first CI run]_
+> Live report: https://qmd09.github.io/playwright-showcase/
 
 ## Architecture Decisions
 
