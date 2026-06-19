@@ -28,8 +28,13 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run UI and API tests
+        run: npx playwright test tests/ui tests/api
+        env:
+          CI: true
+
+      - name: Run visual tests
+        run: npx playwright test tests/visual --update-snapshots
         env:
           CI: true
 
