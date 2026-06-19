@@ -4,7 +4,11 @@ export abstract class BasePage {
   constructor(protected readonly page: Page) {}
 
   async waitForPageLoad(): Promise<void> {
-    await this.page.waitForLoadState('networkidle');
+    // Use domcontentloaded rather than networkidle. networkidle waits for 500ms
+    // of zero network activity which causes flaky timeouts on pages with polling,
+    // WebSockets, or third-party scripts. Subclasses should override goto() to
+    // wait for a specific element that signals the page is ready for interaction.
+    await this.page.waitForLoadState('domcontentloaded');
   }
 
   getElement(selector: string): Locator {

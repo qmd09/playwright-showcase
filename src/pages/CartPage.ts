@@ -21,7 +21,8 @@ export class CartPage extends BasePage {
 
   async goto(): Promise<void> {
     await this.page.goto('/cart.html');
-    await this.waitForPageLoad();
+    // Wait for the checkout button to confirm the cart page is ready.
+    await this.checkoutButton.waitFor({ state: 'visible' });
   }
 
   async getCartItems(): Promise<CartItem[]> {

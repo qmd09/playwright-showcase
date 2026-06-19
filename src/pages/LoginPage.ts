@@ -17,7 +17,9 @@ export class LoginPage extends BasePage {
 
   async goto(): Promise<void> {
     await this.page.goto('/');
-    await this.waitForPageLoad();
+    // Wait for the username field rather than network silence — more reliable
+    // and immediately confirms the login form is interactive.
+    await this.usernameInput.waitFor({ state: 'visible' });
   }
 
   async login(username: string, password: string): Promise<void> {
