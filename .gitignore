@@ -2,6 +2,5 @@ node_modules/
 test-results/
 playwright-report/
 .env
-tests/visual/snapshots/
 .auth/
 dist/

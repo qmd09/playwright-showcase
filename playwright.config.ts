@@ -27,6 +27,7 @@ export default defineConfig({
     },
   },
   snapshotDir: './tests/visual/snapshots',
+  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}-{projectName}{ext}',
   projects: [
     {
       name: 'setup',
@@ -51,11 +52,13 @@ export default defineConfig({
       name: 'mobile-chrome',
       use: { ...devices['Pixel 5'] },
       dependencies: ['setup'],
+      testIgnore: /tests\/visual/,
     },
     {
       name: 'mobile-safari',
       use: { ...devices['iPhone 12'] },
       dependencies: ['setup'],
+      testIgnore: /tests\/visual/,
     },
   ],
   globalSetup: './src/fixtures/global.setup.ts',
